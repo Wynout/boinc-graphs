@@ -1,0 +1,26 @@
+<h1>BOINC Project Statistics</h1>
+<p class="lead">Overview of all BOINC projects currently in the database, checkout the <a href="#/chartist/examples">Chartist.js examples</a></p>
+    		
+<p><input type="search" class="form-control" placeholder="Search" data-ng-model="query" /></p>
+<table class="table table-hover table-bordered" data-ng-controller="ProjectListController as boinc">
+    <thead>
+        <tr>
+            <th data-ng-click="sort('name')">
+                Name 
+                <span data-ng-show="sort.field==='name' && !sort.order" class="glyphicon glyphicon-chevron-down"></span>
+                <span data-ng-show="sort.field==='name' && sort.order" class="glyphicon glyphicon-chevron-up"></span>
+            </th>
+            <th ng-click="sort('nusers_total')">
+                Users 
+                <span data-ng-show="sort.field==='nusers_total' && !sort.order" class="glyphicon glyphicon-chevron-down"></span>
+                <span data-ng-show="sort.field==='nusers_total' && sort.order" class="glyphicon glyphicon-chevron-up"></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-click="show(project.id)" data-ng-repeat="project in boinc.projects | filter: query | orderBy: sort.field : sort.order">
+            <td>{{project.name}}</td>
+            <td><span class="badge">{{project.nusers_total}}</span></td>
+        </tr>
+    </tbody>
+</table>
